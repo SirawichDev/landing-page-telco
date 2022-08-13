@@ -1,9 +1,9 @@
 import type {
+  ErrorBoundaryComponent,
   LinksFunction,
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -12,28 +12,49 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import MainLayout from "./components/layouts/main-layout";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import tailwindPlugin from "./styles/tailwind-plugins.css";
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
+  return [
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: tailwindPlugin },
+  ];
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = ({ data }: { data: any }) => {
+  if (!data) {
+    return {
+      title: "Hi",
+      description: "We could not find this Pokémon",
+    };
+  }
 
-type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
+  const name = data.pokemon.name;
+  return {
+    title: `This is the amazing ${name}`,
+    description: `We caught the Pokémon with the name: ${name}`,
+  };
 };
+export const ErrorBoundary: ErrorBoundaryComponent = (props) => {
+  const { error } = props;
 
-export const loader: LoaderFunction = async ({ request }) => {
-  return json<LoaderData>({
-    user: await getUser(request),
-  });
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <div>Something went wrong.</div>
+        {process.env.NODE_ENV === "development" && <div>{error.message}</div>}
+        <Scripts />
+      </body>
+    </html>
+  );
 };
 
 export default function App() {
@@ -44,10 +65,12 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
       </body>
     </html>
   );
