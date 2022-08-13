@@ -15,7 +15,7 @@ import {
 import MainLayout from "./components/layouts/main-layout";
 
 import tailwindPlugin from "app/styles/tailwind-plugins.css";
-import tailwindStylesheetUrl from "app/styles/tailwind-default.css";
+import tailwindStylesheetUrl from "../external-style/tailwind-default.css";
 
 
 export const links: LinksFunction = () => {
