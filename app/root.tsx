@@ -29,14 +29,14 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
   if (!data) {
     return {
       title: "Hi",
-      description: "We could not find this Pokémon",
+      description: "...",
     };
   }
 
   const name = data.pokemon.name;
   return {
     title: `This is the amazing ${name}`,
-    description: `We caught the Pokémon with the name: ${name}`,
+    description: `We are: ${name}`,
   };
 };
 export const ErrorBoundary: ErrorBoundaryComponent = (props) => {
