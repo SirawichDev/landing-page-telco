@@ -14,8 +14,8 @@ import {
 } from "@remix-run/react";
 import MainLayout from "./components/layouts/main-layout";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import tailwindPlugin from "./styles/tailwind-plugins.css";
+import tailwindStylesheetUrl from "app/styles/tailwind.css";
+import tailwindPlugin from "app/styles/tailwind-plugins.css";
 
 export const links: LinksFunction = () => {
   return [
