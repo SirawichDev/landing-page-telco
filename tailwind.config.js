@@ -36,7 +36,7 @@ module.exports = {
         '-1': '-1',
       },
       fontFamily: {
-        body: ['Open Sans', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
         heading: ['Domine', 'system-ui', 'sans-serif'],
       },
       fontSize: {
@@ -44,6 +44,7 @@ module.exports = {
         '70': '70px'
       },
       colors: {
+        darkblue: '#010C2A',
         light: withOpacity('--color-light'),
         dark: withOpacity('--color-dark'),
         accent: withOpacity('--color-accent'),
