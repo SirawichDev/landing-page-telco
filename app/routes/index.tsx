@@ -124,7 +124,7 @@ export default function Index() {
       </Container>
       <Container variant={'services'}>
         <div className={'flex xs:flex-wrap flex-nowrap gap-10 w-full justify-evenly'}>
-          <img alt={'about'} src={'https://demo.webtend.net/html/telco/assets/images/about/aobut.png'} />
+          <img alt={'about'} className={'object-scale-down'} src={'https://demo.webtend.net/html/telco/assets/images/about/aobut.png'} />
           <div className={'flex flex-col pl-4'}>
             <span className='font-heading text-sm text-accent'>COMPANY ABOUT US</span>
             <h1 className={'font-heading font-bold xs:text-[2rem] text-[3rem] lg:text-[3.2rem] relative'}>Advanced
@@ -146,7 +146,7 @@ export default function Index() {
           </div>
         </div>
       </Container>
-      <Container variant={'banner'}>
+      <Container variant={'banner'} className={'xs:pl-10'}>
         <div className='ml-1.5 mr-1.5 flex flex-wrap'>
           <div className='grid grid-cols-2 xs:grid-cols-1 gap-x-10 sm:gap-x-0 sm:pl-11 pl-0'>
             <div className=''>
@@ -160,9 +160,9 @@ export default function Index() {
               <p className='font-body text-md'>Veritatis Et Quasi Architecto Beatae Vitae Dicta Sunt Explicabo. Nemo
                 Enim Ipsam Voluptatem Quia Voluptas Sit Aspernatur Aut Odit Aut Fugit,</p>
 
-              <div className={'flex gap-4 items-center mt-20'}>
+              <div className={'flex gap-4 xs:flex-wrap items-center mt-20'}>
                 {achievementCounter.map((item, index) => (
-                  <div className={'flex gap-4 items-center'}>
+                  <div key={index} className={'flex gap-4 items-center'}>
                     <h3 className={'font-heading text-6xl font-semibold'}>{item.count}+</h3>
                     <h4 className={'font-heading text-xl font-medium'}>{item.topic}</h4>
                   </div>
