@@ -2,7 +2,6 @@ import { Outlet } from '@remix-run/react';
 import Button from '~/components/button';
 import Container from '~/components/container';
 
-import { useOptionalUser } from '~/utils';
 import ArrowNextIcon from '~/components/icons/arrow-next';
 import Card from '~/components/card';
 
