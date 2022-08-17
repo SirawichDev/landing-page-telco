@@ -16,7 +16,6 @@
     "lint": "yarn run eslint . --ext .js,.jsx,.ts,.tsx",
     "generate:css": "tailwindcss -o ./app/styles/tailwind-plugins.css",
     "setup": "prisma generate && prisma migrate deploy && prisma db seed",
-    "start:mocks": "cross-env NODE_ENV=production node --require ./mocks --require dotenv/config ./build/server.js",
     "test": "vitest",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
     "pretest:e2e:run": "npm run build",
