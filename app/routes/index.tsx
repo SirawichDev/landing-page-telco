@@ -133,10 +133,12 @@ export default function Index() {
         </div>
       </Container>
       <Container variant={'services'}>
-        <div className={'flex sm:flex-wrap flex-nowrap gap-10 w-full justify-evenly'}>
-          <img alt={'about'} className={'flex w-36 md:max-w-[100px] flex-shrink-0 object-scale-down'}
+        <div className={'flex items-center xs:flex-wrap gap-10 w-full justify-evenly'}>
+          <div className={'flex-shrink-[1]'}>
+          <img alt={'about'} className={'w-full object-scale-down'}
                src={'https://demo.webtend.net/html/telco/assets/images/about/aobut.png'} />
-          <div className={'flex flex-col basis-2 pl-4 flex-grow-[2] flex-shrink-[2]'}>
+          </div>
+          <div className={'flex flex-col pl-4 flex-shrink-[2]'}>
             <span className='font-heading text-sm text-accent'>COMPANY ABOUT US</span>
             <h1 className={'font-heading font-bold xs:text-[2rem] text-[3rem] lg:text-[3.2rem] relative'}>Advanced
               Software <span

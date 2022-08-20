@@ -10,6 +10,7 @@ function withOpacity(variableName) {
 }
 module.exports = {
   mode: 'jit',
+  purge: ['./app/**/*.{ts,tsx,jsx,js}'],
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     extend: {
@@ -25,12 +26,12 @@ module.exports = {
       },
       screens: {
         'xxs': '540px',
-        xs: { max: '575px' },
-        sm: { min: '576px', max: '897px' },
-        md: { min: '898px', max: '1199px' },
-        lg: { min: '1200px' },
-        xl: { min: '1159px' },
-        xxl: { min: '1359px' }
+        'xs': { max: '575px' },
+        'sm': { min: '576px', max: '897px' },
+        'md': { min: '898px', max: '1199px' },
+        'lg': { min: '1200px' },
+        'xl': { min: '1159px' },
+        'xxl': { min: '1359px' }
       },
       zIndex: {
         '-1': '-1',
