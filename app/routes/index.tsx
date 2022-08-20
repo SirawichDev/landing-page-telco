@@ -1,9 +1,10 @@
-import { Outlet } from '@remix-run/react';
 import Button from '~/components/button';
 import Container from '~/components/container';
 
 import ArrowNextIcon from '~/components/icons/arrow-next';
 import Card from '~/components/card';
+import { json, LoaderFunction, MetaFunction } from '@remix-run/node';
+import Face from '~/components/icons/face';
 
 const shapeArray: Array<Record<any, any>> = [
   {
@@ -60,6 +61,16 @@ const achievementCounter = [
     count: 333,
   },
 ];
+
+export const meta: MetaFunction = ({ data }: { data: any }) => {
+  return {
+    title: `🏠 ${data.title}`,
+    description: `Hellow`,
+  };
+};
+export let loader: LoaderFunction = async ({ params }) => {
+  return json({ title: 'Home' });
+};
 export default function Index() {
   return (
     <>
@@ -122,9 +133,10 @@ export default function Index() {
         </div>
       </Container>
       <Container variant={'services'}>
-        <div className={'flex xs:flex-wrap flex-nowrap gap-10 w-full justify-evenly'}>
-          <img alt={'about'} className={'object-scale-down'} src={'https://demo.webtend.net/html/telco/assets/images/about/aobut.png'} />
-          <div className={'flex flex-col pl-4'}>
+        <div className={'flex sm:flex-wrap flex-nowrap gap-10 w-full justify-evenly'}>
+          <img alt={'about'} className={'flex w-36 md:max-w-[100px] flex-shrink-0 object-scale-down'}
+               src={'https://demo.webtend.net/html/telco/assets/images/about/aobut.png'} />
+          <div className={'flex flex-col basis-2 pl-4 flex-grow-[2] flex-shrink-[2]'}>
             <span className='font-heading text-sm text-accent'>COMPANY ABOUT US</span>
             <h1 className={'font-heading font-bold xs:text-[2rem] text-[3rem] lg:text-[3.2rem] relative'}>Advanced
               Software <span
@@ -138,7 +150,10 @@ export default function Index() {
             <ul className={'mt-10'}>
               {softwareChecklist.map((item, index) => (
                 <li key={index}
-                    className={'before:content-[\'✓\'] before:text-accent-500 before:border-2 before:text-center before:mr-3 before:rounded-full mb-5 before:p-1'}>{item.topic}</li>
+                    className={'flex gap-4'}>
+                  <Face width={15}/>
+                  <span>{item.topic}</span>
+                </li>
               ))}
             </ul>
             <Button className={'w-48 mt-20'} variant={'outline'}>{('Discover more').toUpperCase()}</Button>

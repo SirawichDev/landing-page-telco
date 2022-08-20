@@ -762,12 +762,6 @@ video {
   width: auto;
 }
 
-.w-max {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
 .max-w-1920 {
   max-width: 1920px;
 }
@@ -1626,10 +1620,6 @@ video {
   .md\:p-8 {
     padding: 2rem;
   }
-
-  .md\:pl-10 {
-    padding-left: 2.5rem;
-  }
 }
 
 @media (min-width: 1200px) {
@@ -1776,12 +1766,12 @@ video {
     padding-right: 1.25rem;
   }
 
-  .xs\:pt-6 {
-    padding-top: 1.5rem;
-  }
-
   .xs\:pl-10 {
     padding-left: 2.5rem;
+  }
+
+  .xs\:pt-6 {
+    padding-top: 1.5rem;
   }
 
   .xs\:text-center {

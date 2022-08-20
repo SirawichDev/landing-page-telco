@@ -25,20 +25,6 @@ export const links: LinksFunction = () => {
   ];
 };
 
-export const meta: MetaFunction = ({ data }: { data: any }) => {
-  if (!data) {
-    return {
-      title: "Hi",
-      description: "...",
-    };
-  }
-
-  const name = data.pokemon.name;
-  return {
-    title: `This is the amazing ${name}`,
-    description: `We are: ${name}`,
-  };
-};
 export const ErrorBoundary: ErrorBoundaryComponent = (props) => {
   const { error } = props;
 
