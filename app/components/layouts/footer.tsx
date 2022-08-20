@@ -5,7 +5,7 @@ const Footer = () => {
     <>
       <Container className={"overflow-visible bg-darkblue mt-20 xs:mt-36 h-full pb-10 relative"} variant={'banner'}>
         <div className={"p-36 xs:p-7 bg-accent-500 absolute rounded-2xl ml-auto mr-auto xs:h-60 h-52 -top-40 w-[90%]"}>
-          <div className={'flex justify-between items-center xs:flex-wrap gap-7 xs:gap-4 flex-1 relative bottom-6'}>
+          <div className={'flex justify-between items-center xs:flex-wrap flex- gap-7 xs:gap-4 flex-1 relative bottom-6'}>
             <h1 className={'font-heading text-5xl xs:text-2xl xs:text-center xs:pt-6 -pr-16 text-white font-bold'}>Subscribe To Get Infromation</h1>
             <div className={'flex flex-col w-auto'}>
               <form className={'bg-white xs:flex-wrap flex flex-wrap rounded-xl p-2'}>
