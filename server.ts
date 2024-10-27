@@ -21,10 +21,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// if we're not in the primary region, then we need to make sure all
-// non-GET/HEAD/OPTIONS requests hit the primary region rather than read-only
-// Postgres DBs.
-// learn more: https://fly.io/docs/getting-started/multi-region-databases/#replay-the-request
 app.all("*", function getReplayResponse(req, res, next) {
   const { method, path: pathname } = req;
   const { PRIMARY_REGION, FLY_REGION } = process.env;
@@ -50,7 +46,6 @@ app.all("*", function getReplayResponse(req, res, next) {
 
 app.use(compression());
 
-// http://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 app.disable("x-powered-by");
 
 // Remix fingerprints its assets so we can cache forever.
@@ -91,11 +86,6 @@ app.listen(port, () => {
 });
 
 function purgeRequireCache() {
-  // purge require cache on requests for "server side HMR" this won't let
-  // you have in-memory objects between requests in development,
-  // alternatively you can set up nodemon/pm2-dev to restart the server on
-  // file changes, we prefer the DX of this though, so we've included it
-  // for you by default
   for (const key in require.cache) {
     if (key.startsWith(BUILD_DIR)) {
       // eslint-disable-next-line @typescript-eslint/no-dynamic-delete

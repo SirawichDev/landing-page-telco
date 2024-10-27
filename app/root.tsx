@@ -1,9 +1,9 @@
 import type {
+  ErrorBoundaryComponent,
   LinksFunction,
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node";
-import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -12,28 +12,36 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import MainLayout from "./components/layouts/main-layout";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import tailwindPlugin from "app/styles/tailwind-plugins.css";
+import tailwindStylesheetUrl from "../external-style/tailwind-default.css";
+
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
+  return [
+    { rel: "stylesheet", href: tailwindStylesheetUrl },
+    { rel: "stylesheet", href: tailwindPlugin },
+  ];
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const ErrorBoundary: ErrorBoundaryComponent = (props) => {
+  const { error } = props;
 
-type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
-  return json<LoaderData>({
-    user: await getUser(request),
-  });
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <div>Something went wrong.</div>
+        {process.env.NODE_ENV === "development" && <div>{error.message}</div>}
+        <Scripts />
+      </body>
+    </html>
+  );
 };
 
 export default function App() {
@@ -44,10 +52,12 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
       </body>
     </html>
   );
